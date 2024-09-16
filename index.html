@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenny's Special Birthday</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            position: relative; /* Added to position balloons and confetti relative to the body */
+        }
+
+        /* Left: Slideshow */
+        .slideshow {
+            width: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+
+        .slideshow img {
+            width: 80%;
+            max-width: 400px;
+            display: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Right: Typewriter Letter */
+        .letter {
+            width: 50%;
+            padding: 20px;
+            color: #333;
+            text-align: left;
+            background: #ffaeeb;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+            box-sizing: border-box; /* Ensures padding doesn't exceed width */
+        }
+
+        .typewriter {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2em;
+            white-space: pre-wrap; /* Allows wrapping for multiline text */
+            overflow: hidden;
+            border-right: 1px solid;
+            padding-right: 5px;
+            color: black;
+        }
+
+        /* Balloon and Confetti */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            font-size: 2em; /* Increased size for better visibility */
+            animation: float 10s ease-in-out forwards;
+            display: none;
+            z-index: 10; /* Ensures balloons are above other elements */
+        }
+
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 10%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #333; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+
+        .confetti {
+            width: 10px;
+            height: 10px;
+            background-color: #ff99cc;
+            position: absolute;
+            top: 0;
+            animation: fall 5s linear forwards;
+            opacity: 0.8;
+            border-radius: 50%; /* Makes confetti circular */
+        }
+
+        @keyframes fall {
+            0% { top: -10px; transform: rotate(0deg); }
+            100% { top: 100vh; transform: rotate(360deg); }
+        }
+
+        /* Confetti with Emojis Removed */
+        /* If you prefer using emojis for confetti, adjust the CSS accordingly or use images */
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .slideshow, .letter {
+                width: 100%;
+                margin: 10px 0;
+            }
+            .letter {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slideshow on the Left -->
+    <div class="slideshow">
+        <img src="assets/img/img1.jpg" alt="Memory 1" style="display: block;"> <!-- Display first image by default -->
+        <img src="assets/img/img2.jpg" alt="Memory 2">
+        <img src="assets/img/img3.jpeg" alt="Memory 3">
+        <img src="assets/img/img4.jpeg" alt="Memory 4">
+        <img src="assets/img/img5.jpeg" alt="Memory 5">
+        <img src="assets/img/img6.jpg" alt="Memory 6">
+        <img src="assets/img/img7.jpeg" alt="Memory 7">
+        <img src="assets/img/img8.jpeg" alt="Memory 8">
+        <img src="assets/img/img9.jpeg" alt="Memory 9">
+        <img src="assets/img/img10.jpeg" alt="Memory 10">
+        <!-- More images can be added -->
+    </div>
+
+    <!-- Right: Letter with Typewriter Effect -->
+    <div class="letter">
+        <h2>Dear Zenny,</h2>
+        <p class="typewriter" id="typedMessage">
+Welcome to a special journey of our friendship, where each memory is a chapter, and every smile is a line written in the book of us. For a while, life was rough, but having you by my side has made everything better. You’ve been my constant through the storms, the one who lights up my world even in the coldest Decembers.
+
+I’ll never forget how we used to smile and laugh together, how our eyes would meet, and it felt like the world stood still. You are the sunshine in my life—the warmth that melts away the hardest days. With you, every moment is brighter, and every challenge is easier to face.
+
+You’ve become so much more than a friend. You’re my peace in the chaos, my faith in uncertain times. I still remember the late-night talks, the silly jokes, and the quiet moments we’ve shared. I hold onto those memories like treasures, knowing that they are the beautiful things I’ve been blessed with.
+
+Sometimes, I sit and think about how lucky I am to have you in my life. You’re the girl I thank God for every day, the one I never want to lose. But there’s always a part of me that’s terrified—terrified of losing the one person who means the most to me. I hope you know how much you mean to me, Zenny. Please stay. I want you, I need you, and I can’t imagine my life without you.
+
+I love every part of you—your laughter, your strength, your quirks, and even your imperfections. Because, to me, they’re perfect. You’re my beginning and my end, and with you, I always feel like I’m winning. You’re my muse, my inspiration, the one who makes me better just by being yourself.
+
+So here’s my promise: I’ll give you all of me, and I know you’ll give me all of you. Together, we can face anything, because with you, I’m whole.
+<b>Happy Birthday once again, Zenny❤️</b>
+Robby Jhay 🦅❤️
+        </p>
+    </div>
+
+    <!-- Balloon Animations -->
+    <div class="balloon" style="left: 10%;">🎈</div>
+    <div class="balloon" style="left: 20%;">🎈</div>
+    <div class="balloon" style="left: 30%;">🎈</div>
+    <div class="balloon" style="left: 40%;">🎈</div>
+    <div class="balloon" style="left: 50%;">🎈</div>
+    <div class="balloon" style="left: 60%;">🎈</div>
+    <div class="balloon" style="left: 70%;">🎈</div>
+    <div class="balloon" style="left: 80%;">🎈</div>
+    <div class="balloon" style="left: 90%;">🎈</div>
+
+    <!-- Confetti -->
+    <!-- Removed emojis from confetti divs -->
+    <!-- Confetti will be generated dynamically via JavaScript -->
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="assets/song/Beautiful Things - Zenny❤️ (Remix).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Slideshow Functionality
+        let images = document.querySelectorAll('.slideshow img');
+        let index = 0;
+        setInterval(function() {
+            images.forEach(img => img.style.display = 'none');
+            images[index].style.display = 'block';
+            index = (index + 1) % images.length;
+        }, 5000); // Change image every 5 seconds
+
+        // Typewriter Effect for the Letter
+        let messageElement = document.getElementById('typedMessage');
+        let message = messageElement.textContent.trim();
+        messageElement.textContent = ''; // Clear the text content
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < message.length) {
+                messageElement.textContent += message.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 300); // Adjust typing speed here
+            }
+        }
+        setTimeout(typeWriter, 1000); // Start after 1 second
+
+
+// Get the audio element
+let backgroundMusic = document.getElementById('backgroundMusic');
+
+// Typing speed: Increase the delay to slow down the typing (e.g., 150ms per character)
+function typeWriter() {
+    if (charIndex < message.length) {
+        typedMessage.textContent = message.substring(0, charIndex + 1);
+        charIndex++;
+        setTimeout(typeWriter, 250); // Adjust this value to control typing speed (200ms for slower typing)
+    }
+}
+
+// Start the typewriter and music after 2 seconds
+setTimeout(function() {
+    backgroundMusic.play(); // Start the background music
+    typeWriter();           // Start the typewriter effect
+}, 2000); // Start after 2 seconds
+
+
+        // Balloon and Confetti Animation
+        setTimeout(function() {
+            // Show Balloons
+            let balloons = document.querySelectorAll('.balloon');
+            balloons.forEach((balloon, idx) => {
+                setTimeout(() => {
+                    balloon.style.display = 'block';
+                }, idx * 500); // Stagger balloon appearance by 500ms
+            });
+
+            // Confetti Logic (Dynamic Creation)
+            let confettiInterval = setInterval(function() {
+                createConfetti();
+            }, 300); // Create confetti every 300ms
+
+            // Stop creating confetti after 5 seconds
+            setTimeout(() => {
+                clearInterval(confettiInterval);
+            }, 5000);
+
+        }, 5000); // Show balloons and confetti after 5 seconds
+
+        function createConfetti() {
+            let confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            confetti.style.backgroundColor = getRandomColor();
+            document.body.appendChild(confetti);
+
+            // Remove confetti after animation completes
+            confetti.addEventListener('animationend', () => {
+                confetti.remove();
+            });
+        }
+
+        function getRandomColor() {
+            const colors = ['#ff9999', '#ff66cc', '#ff99cc', '#ffccff', '#ffb3b3'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+</html>
