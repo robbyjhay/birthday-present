@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>happy Birthday</title>
+    <title>Happy Birthday</title>
     <style>
-        body {
+         /* General Styling */
+         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #FFDEE9, #FF80AB, #FFC0CB, #E1BEE7);
-
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             overflow: hidden;
-            position: relative; /* Needed for balloon/confetti positioning */
+            position: relative;
         }
 
+        /* Button Container */
         .button-container {
             text-align: center;
             z-index: 2;
         }
 
+        /* Bouncy Button */
         .button-container button {
             padding: 15px 30px;
             background-color: #ff66cc;
@@ -32,15 +34,22 @@
             border-radius: 8px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s;
+            animation: bounce 1.5s infinite; /* Adding bounce animation */
+            transition: transform 0.3s;
         }
 
         .button-container button:hover {
             background-color: #ff3399;
         }
 
-        .hidden {
-            display: none;
+        /* Bouncy animation */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* Slideshow and Letter Section */
@@ -50,7 +59,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            display: none; /* Initially hidden */
+            display: none;
             z-index: 1;
         }
 
@@ -72,7 +81,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin-right: 20px;
             box-sizing: border-box;
-            display: none; /* Initially hidden */
+            display: none;
         }
 
         .typewriter {
@@ -115,6 +124,21 @@
             0% { top: -10px; transform: rotate(0deg); }
             100% { top: 100vh; transform: rotate(360deg); }
         }
+
+
+         /* Responsiveness */
+         @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .slideshow, .letter {
+                width: 100%;
+                margin: 10px 0;
+            }
+            .letter {
+                margin-right: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -138,24 +162,19 @@
         <img src="assets/img/img10.jpeg" alt="Memory 10">
         <img src="assets/img/img11.jpeg" alt="Memory 11">
         <img src="assets/img/img45.jpeg" alt="Memory 12">
-        <!-- More of your images can be added -->
+        <!-- Add more images if needed -->
     </div>
 
-    <!-- Right: Letter with Typewriter Effect (Hidden Initially) -->
+    <!-- Right: Letter with Typewriter Effect (Hidden initially) -->
     <div class="letter">
-        <h2>Happy Birthday 🦅❤️<h2>
-        <h2>Dear Zenny,</h2>
-        <p class="typewriter" id="typedMessage">
-Welcome to a special journey of our friendship where every memory is a chapter, and every smile is a line in our story. Life was tough for a while, but having you by my side made everything better. You’ve been my constant, lighting up my world in the darkest moments.
+        <h2>In Your Arms, I’ve Found My Home 🦅❤️</h2>
+        <p class="typewriter" id="typedMessage">Dear Zenny❤️,
 
-  I’ll never forget our laughs, those moments where time seemed to stop, and how you melt away the hardest days. You’ve become more than a friend—you’re my peace and faith in chaotic times. I cherish the late-night talks and quiet moments we've shared.
-          
-  Sometimes, I reflect on how lucky I am to have you. You're the one I thank God for every day, the one I’m scared to lose. Please stay, because you mean the world to me. I love every part of you—your laughter, quirks, and even imperfections, which are perfect to me.
-          
-  Here’s my promise: I’ll give you all of me, and I know you'll give me all of you. Together, we’re whole.
-<b>Happy Birthday once again, Zenny❤️</b>
+Welcome to the journey of us, where every memory is a chapter and each smile is a line in our story. Life hasn’t always been easy, but with you by my side, every challenge feels lighter. You’ve been my constant, my light in dark times, and I can’t thank you enough for that.
+
+Through the highs and lows, I promise to be there. When things get tough, you won’t face them alone. You have me, always. If your heart ever feels heavy, I’ll give you mine to carry you through.
+
 With all my love,
-
 Robby Jhay 🦅❤️
         </p>
     </div>
@@ -174,57 +193,72 @@ Robby Jhay 🦅❤️
     <!-- Looking for Confetti?? -->
       <!-- Don't woryy, confetti will be generated dynamically via JavaScript -->
 
-    <!-- Background Music (This is hidden until click) -->
+
+    <!-- Background Music (Hidden until click) -->
     <audio id="backgroundMusic" autoplay loop>
         <source src="assets/song/Beautiful Things - Zenny❤️ (Remix).mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <script>
-       document.getElementById('clickMeButton').addEventListener('click', function() {
-            // Hide the button
-            document.getElementById('clickMeButton').style.display = 'none';
-
-            // Show the slideshow and letter sections
-            document.querySelector('.slideshow').style.display = 'block';
+          document.getElementById('clickMeButton').addEventListener('click', function() {
+            this.style.animation = 'none';
+            this.style.display = 'none';
+            const slideshow = document.querySelector('.slideshow');
+            slideshow.style.display = 'block';
             document.querySelector('.letter').style.display = 'block';
-
-            // Start typing and play background music
+            startSlideshow();
             let messageElement = document.getElementById('typedMessage');
             let message = messageElement.textContent.trim();
-            messageElement.textContent = ''; // Clear the text content
+            messageElement.textContent = '';
             let charIndex = 0;
 
             function typeWriter() {
                 if (charIndex < message.length) {
                     messageElement.textContent += message.charAt(charIndex);
                     charIndex++;
-                    setTimeout(typeWriter, 100); // Adjust typing speed
+                    setTimeout(typeWriter, 100);
                 }
             }
 
-            // Delay the start of the typewriter and background music
-            setTimeout(typeWriter, 1000); 
+            setTimeout(typeWriter, 1000);
             document.getElementById('backgroundMusic').play();
         });
 
-        // Show the balloons immediately when the page loads
+        function startSlideshow() {
+            let index = 0;
+            const images = document.querySelectorAll('.slideshow img');
+            function showNextImage() {
+                images.forEach((img, i) => img.style.display = i === index ? 'block' : 'none');
+                index = (index + 1) % images.length;
+            }
+            setInterval(showNextImage, 3000);
+            showNextImage();
+        }
+
+        window.onload = function() {
+            floatBalloons();
+            startConfetti();
+        };
+
         function floatBalloons() {
             let balloons = document.querySelectorAll('.balloon');
             balloons.forEach((balloon, idx) => {
-                balloon.style.animation = `float 10s ease-in-out ${idx * 1}s infinite`; // Staggered animation start times
+                balloon.style.animation = `float 10s ease-in-out ${idx * 1}s infinite`;
             });
         }
 
-        // Confetti logic: dynamic creation of confetti elements
+        function startConfetti() {
+            setInterval(createConfetti, 300);
+        }
+
         function createConfetti() {
             let confetti = document.createElement('div');
             confetti.classList.add('confetti');
-            confetti.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            confetti.style.left = Math.random() * 100 + 'vw';
             confetti.style.backgroundColor = getRandomColor();
             document.body.appendChild(confetti);
 
-            // Remove confetti after animation ends
             confetti.addEventListener('animationend', () => {
                 confetti.remove();
             });
@@ -234,17 +268,7 @@ Robby Jhay 🦅❤️
             const colors = ['#ff9999', '#ff66cc', '#ff99cc', '#ffccff', '#ffb3b3'];
             return colors[Math.floor(Math.random() * colors.length)];
         }
-
-        // Create confetti continuously
-        function startConfetti() {
-            setInterval(createConfetti, 300); // Create confetti every 300ms
-        }
-
-        // Start balloons and confetti when the page loads
-        window.onload = function() {
-            floatBalloons();
-            startConfetti();
-        };
     </script>
+
 </body>
 </html>
