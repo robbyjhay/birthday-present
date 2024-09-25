@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,6 +140,11 @@
             100% { top: 100vh; transform: rotate(360deg); }
         }
 
+         /* Video Styling */
+         #video {
+            display: none;
+            margin-top: 20px;
+        }
 
          /* Responsiveness */
          @media (max-width: 768px) {
@@ -234,74 +240,112 @@ Robby Jhay 🦅❤️
         Your browser does not support the audio element.
     </audio>
 
+    
+    <video id="video" width="720" height="700" controls>
+        <source src="assets/video/selfie vid.mp4" type="video/mp4"> <!-- Replace with your video source -->
+        Your browser does not support the video tag.
+    </video>
+
     <script>
-          document.getElementById('clickMeButton').addEventListener('click', function() {
-            this.style.animation = 'none';
-            this.style.display = 'none';
-            const slideshow = document.querySelector('.slideshow');
-            slideshow.style.display = 'block';
-            document.querySelector('.letter').style.display = 'block';
-            startSlideshow();
-            let messageElement = document.getElementById('typedMessage');
-            let message = messageElement.textContent.trim();
-            messageElement.textContent = '';
-            let charIndex = 0;
+    // Play background music and start the letter and slideshow
+document.getElementById('clickMeButton').addEventListener('click', function() {
+    this.style.animation = 'none';
+    this.style.display = 'none';
+    const slideshow = document.querySelector('.slideshow');
+    slideshow.style.display = 'block';
+    document.querySelector('.letter').style.display = 'block';
+    startSlideshow();
 
-            function typeWriter() {
-                if (charIndex < message.length) {
-                    messageElement.textContent += message.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, 100);
-                }
-            }
+    let messageElement = document.getElementById('typedMessage');
+    let message = messageElement.textContent.trim();
+    messageElement.textContent = '';
+    let charIndex = 0;
 
-            setTimeout(typeWriter, 1000);
-            document.getElementById('backgroundMusic').play();
-        });
-
-        function startSlideshow() {
-            let index = 0;
-            const images = document.querySelectorAll('.slideshow img');
-            function showNextImage() {
-                images.forEach((img, i) => img.style.display = i === index ? 'block' : 'none');
-                index = (index + 1) % images.length;
-            }
-            setInterval(showNextImage, 3000);
-            showNextImage();
+    // Typing effect for the letter
+    function typeWriter() {
+        if (charIndex < message.length) {
+            messageElement.textContent += message.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeWriter, 100); // Typing speed
+        } else {
+            // Once the typewriter finishes, wait for 2 seconds, then hide everything
+            setTimeout(function() {
+                hideAllElements(); // Hide all elements on the screen
+                showVideo(); // Show and play the video automatically
+            }, 2000); // 2-second delay
         }
+    }
 
-        window.onload = function() {
-            floatBalloons();
-            startConfetti();
-        };
+    setTimeout(typeWriter, 1000);
+    document.getElementById('backgroundMusic').play(); // Play the music
+});
 
-        function floatBalloons() {
-            let balloons = document.querySelectorAll('.balloon');
-            balloons.forEach((balloon, idx) => {
-                balloon.style.animation = `float 10s ease-in-out ${idx * 1}s infinite`;
-            });
-        }
+// Function to hide all elements (slideshow, letter, balloons, and confetti)
+function hideAllElements() {
+    document.querySelector('.slideshow').style.display = 'none';
+    document.querySelector('.letter').style.display = 'none';
+    document.querySelectorAll('.balloon').forEach(function(balloon) {
+        balloon.style.display = 'none';
+    });
+    const confettiElements = document.querySelectorAll('.confetti');
+    confettiElements.forEach(function(confetti) {
+        confetti.remove();
+    });
+}
 
-        function startConfetti() {
-            setInterval(createConfetti, 300);
-        }
+// Function to show and play the video automatically
+function showVideo() {
+    const videoElement = document.getElementById('video');
+    videoElement.style.display = 'block'; // Show the video
+    videoElement.play(); // Automatically play the video
+}
 
-        function createConfetti() {
-            let confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.backgroundColor = getRandomColor();
-            document.body.appendChild(confetti);
+// Start the slideshow
+function startSlideshow() {
+    let index = 0;
+    const images = document.querySelectorAll('.slideshow img');
+    function showNextImage() {
+        images.forEach((img, i) => img.style.display = i === index ? 'block' : 'none');
+        index = (index + 1) % images.length;
+    }
+    setInterval(showNextImage, 3000);
+    showNextImage();
+}
 
-            confetti.addEventListener('animationend', () => {
-                confetti.remove();
-            });
-        }
+// Initial animations when the page loads
+window.onload = function() {
+    floatBalloons();
+    startConfetti();
+};
 
-        function getRandomColor() {
-            const colors = ['#ff9999', '#ff66cc', '#ff99cc', '#ffccff', '#ffb3b3'];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
+function floatBalloons() {
+    let balloons = document.querySelectorAll('.balloon');
+    balloons.forEach((balloon, idx) => {
+        balloon.style.animation = `float 10s ease-in-out ${idx * 1}s infinite`;
+    });
+}
+
+function startConfetti() {
+    setInterval(createConfetti, 300);
+}
+
+function createConfetti() {
+    let confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.backgroundColor = getRandomColor();
+    document.body.appendChild(confetti);
+
+    confetti.addEventListener('animationend', () => {
+        confetti.remove();
+    });
+}
+
+function getRandomColor() {
+    const colors = ['#ff9999', '#ff66cc', '#ff99cc', '#ffccff', '#ffb3b3'];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
     </script>
 
 </body>
