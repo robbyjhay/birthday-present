@@ -306,7 +306,14 @@ function showVideo() {
     const videoElement = document.getElementById('video');
     videoElement.style.display = 'block'; // Show the video
     videoElement.play(); // Automatically play the video
+
+    // Ensure video plays for the full duration
+    videoElement.addEventListener('ended', function() {
+        // Perform any action you want after the video finishes
+        console.log('Video has ended.');
+    });
 }
+
 
 // Start the slideshow
 function startSlideshow() {
