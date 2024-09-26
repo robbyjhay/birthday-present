@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,6 +139,10 @@
             100% { top: 100vh; transform: rotate(360deg); }
         }
 
+        .reveal-button {
+
+        }
+
          /* Video Styling */
          #video {
             display: none;
@@ -223,7 +226,24 @@ Robby Jhay 🦅❤️
 
 Wait, don't leave just yet! 
             
-    There's one more surprise...😝
+There's one more surprise...😝
+
+But, before that. 
+
+Let's do a countdown😏
+
+5...😍
+
+    4...🙄
+
+        3...😘
+
+            2...🥰
+
+                1...😁
+
+                    ...😎
+
         </p>
     </div>
 
@@ -248,14 +268,16 @@ Wait, don't leave just yet!
         Your browser does not support the audio element.
     </audio>
 
-    
-    <video id="video" width="720" height="700" controls>
+    <div class="button-container">
+        <button id="revealButton" style="display: none;">Click me again</button>
+    </div>
+    <video id="video" width="7200" height="700" controls>
         <source src="assets/video/selfie vid.mp4" type="video/mp4"> <!-- Replace with your video source -->
         Your browser does not support the video tag.
     </video>
 
     <script>
-    // Play background music and start the letter and slideshow
+        // Play background music and start the letter and slideshow
 document.getElementById('clickMeButton').addEventListener('click', function() {
     this.style.animation = 'none';
     this.style.display = 'none';
@@ -269,23 +291,21 @@ document.getElementById('clickMeButton').addEventListener('click', function() {
     messageElement.textContent = '';
     let charIndex = 0;
 
-    // Typing effect for the letter
     function typeWriter() {
         if (charIndex < message.length) {
             messageElement.textContent += message.charAt(charIndex);
             charIndex++;
-            setTimeout(typeWriter, 100); // Typing speed
+            setTimeout(typeWriter, 100);
         } else {
-            // Once the typewriter finishes, wait for 5 seconds, then hide everything
+            // Once the typing finishes, wait 2 seconds and then show the button
             setTimeout(function() {
-                hideAllElements(); // Hide all elements on the screen
-                showVideo(); // Show and play the video automatically
-            }, 5000); // 5-second delay
+                document.getElementById('revealButton').style.display = 'block';
+            }, 2000);
         }
     }
 
-    setTimeout(typeWriter, 1000);
-    document.getElementById('backgroundMusic').play(); // Play the music
+    setTimeout(typeWriter, 1000);  // Start typewriter effect with a slight delay
+    document.getElementById('backgroundMusic').play();
 });
 
 // Function to hide all elements (slideshow, letter, balloons, and confetti)
@@ -301,19 +321,13 @@ function hideAllElements() {
     });
 }
 
-// Function to show and play the video automatically
-function showVideo() {
+// When the "Not done yet" button is clicked, hide the button and show the video
+document.getElementById('revealButton').addEventListener('click', function() {
+    this.style.display = 'none'; // Hide the button
     const videoElement = document.getElementById('video');
     videoElement.style.display = 'block'; // Show the video
-    videoElement.play(); // Automatically play the video
-
-    // Ensure video plays for the full duration
-    videoElement.addEventListener('ended', function() {
-        // Perform any action you want after the video finishes
-        console.log('Video has ended.');
-    });
-}
-
+    videoElement.play(); // Play the video
+});
 
 // Start the slideshow
 function startSlideshow() {
