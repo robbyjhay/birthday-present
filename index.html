@@ -288,7 +288,7 @@ Let's do a countdown😏
     </video>
 
     <script>
-        // Play background music and start the letter and slideshow
+// Play background music and start the letter and slideshow
 document.getElementById('clickMeButton').addEventListener('click', function() {
     this.style.animation = 'none';
     this.style.display = 'none';
@@ -332,12 +332,10 @@ function hideAllElements() {
     });
 }
 
-// When the "Not done yet" button is clicked, hide the button and show the video
+// When the "Not done yet" button is clicked, open the video in a new page
 document.getElementById('revealButton').addEventListener('click', function() {
     this.style.display = 'none'; // Hide the button
-    const videoElement = document.getElementById('video');
-    videoElement.style.display = 'block'; // Show the video
-    videoElement.play(); // Play the video
+    window.open('assets/video/selfie vid.mp4', '_blank'); // Open the video in a new tab
 });
 
 // Start the slideshow
@@ -385,6 +383,7 @@ function getRandomColor() {
     const colors = ['#ff9999', '#ff66cc', '#ff99cc', '#ffccff', '#ffb3b3'];
     return colors[Math.floor(Math.random() * colors.length)];
 }
+
 
     </script>
 
